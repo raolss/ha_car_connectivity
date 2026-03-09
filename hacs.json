@@ -1,0 +1,7 @@
+{
+  "name": "HA Car Connectivity",
+  "content_in_root": false,
+  "render_readme": true,
+  "domain": "ha_car_connectivity",
+  "country": ["DE","SE","NO","DK","NL"]
+}
