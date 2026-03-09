@@ -9,6 +9,7 @@ from homeassistant import config_entries
 from homeassistant.core import HomeAssistant
 
 from carconnectivity import CarConnectivity
+import carconnectivity_connector_volkswagen
 
 DOMAIN = "volkswagen_we_connect_id"
 
