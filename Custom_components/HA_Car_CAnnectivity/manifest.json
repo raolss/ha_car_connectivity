@@ -1,0 +1,10 @@
+{
+  "domain": "ha_car_connectivity",
+  "name": "HA Car Connectivity",
+  "config_flow": true,
+  "requirements": [
+    "carconnectivity>=0.9",
+    "carconnectivity-connector-volkswagen>=0.9"
+  ],
+  "codeowners": ["@raolss"]
+}
