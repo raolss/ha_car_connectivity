@@ -4,8 +4,8 @@ from datetime import timedelta
 
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator
 
-from CarConnectivity import CarConnectivity
-import CarConnectivity-connector-volkswagen
+from carconnectivity import CarConnectivity
+import carconnectivity_connector_volkswagen
 
 from .const import CONF_USERNAME, CONF_PASSWORD
 
