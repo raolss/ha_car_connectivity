@@ -1,4 +1,4 @@
-DOMAIN = "ha_car_caoonectivity"
+DOMAIN = "ha_car_connectivity"
 
 CONF_USERNAME = "username"
 CONF_PASSWORD = "password"
