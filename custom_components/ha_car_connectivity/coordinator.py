@@ -2,7 +2,7 @@ import logging
 
 from datetime import timedelta
 
-from homeassistant.helpers.update_coordinator import DataUpdateCoordinator
+from homeassistant.helpers.update_coordinator import dataupdatecoordinator
 
 from carconnectivity import carconnectivity
 import carconnectivity_connector_volkswagen
