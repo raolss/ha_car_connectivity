@@ -5,7 +5,7 @@ from datetime import timedelta
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator
 
 from carconnectivity import carconnectivity
-import carconnectivity_connector_volkswagen
+import CarConnectivity-connector-volkswagen
 
 from .const import CONF_USERNAME, CONF_PASSWORD
 
@@ -34,7 +34,7 @@ class VWCoordinator(DataUpdateCoordinator):
         if self.cc is None:
 
             config = {
-                "carConnectivity": {
+                "carconnectivity": {
                     "connectors": [
                         {
                             "type": "volkswagen",
@@ -47,7 +47,7 @@ class VWCoordinator(DataUpdateCoordinator):
                 }
             }
 
-            self.cc = CarConnectivity(config)
+            self.cc = carconnectivity(config)
 
             await self.cc.start()
 
