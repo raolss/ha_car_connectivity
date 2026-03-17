@@ -1,12 +1,10 @@
 import logging
-import DOMAIN from .const
+from .const import DOMAIN
 
 from datetime import timedelta
 
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator
 
-from carconnectivity import CarConnectivity
-import carconnectivity_connectors.volkswagen
 
 from .const import CONF_USERNAME, CONF_PASSWORD
 
