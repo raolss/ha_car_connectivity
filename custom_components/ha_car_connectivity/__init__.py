@@ -14,14 +14,16 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry):
     #config = entry.data
 
     config = {
-    "connectors": {
-        "vw": {
-            "type": "volkswagen",
-            "config": {
-                "username": entry.data["username"],
-                "password": entry.data["password"],
-                },
-            }
+        "carConnectivity": {
+            "connectors": [
+                {
+                    "type": "volkswagen",
+                    "config": {
+                        "username": entry.data["username"],
+                        "password": entry.data["password"],
+                    },
+                }
+            ]
         }
     }    
 
