@@ -1,7 +1,7 @@
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.core import HomeAssistant
 
-from .coordinator import VWCoordinator
+#from .coordinator import VWCoordinator
 from .const import DOMAIN
 
 from homeassistant.core import HomeAssistant
