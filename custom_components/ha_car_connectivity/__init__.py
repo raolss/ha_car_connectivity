@@ -8,6 +8,7 @@ from homeassistant.core import HomeAssistant
 from homeassistant.config_entries import ConfigEntry
 
 from carconnectivity.carconnectivity import CarConnectivity
+import carconnectivity_connectors.volkswagen
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry):
     config = entry.data
