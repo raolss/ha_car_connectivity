@@ -1,3 +1,6 @@
+import logging
+_LOGGER = logging.getLogger(__name__)
+
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.core import HomeAssistant
 
@@ -23,6 +26,8 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry):
                         "username": entry.data["username"],
                         "password": entry.data["password"],
                         "country": "SE", 
+                        "brand": "vW",
+                        "region": "emea",
                     },
                 }
             ]
@@ -30,10 +35,15 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry):
     }   
 
     # Kör blocking init i executor
-    cc = await hass.async_add_executor_job(
-        CarConnectivity,
-        config
-    )
+    try:
+        cc = await hass.async_add_executor_job(
+            CarConnectivity,
+            config
+        )
+    
+    except Exception as e:
+        _LOGGER.error("CarConnectivity init failed: %s", e)
+        raise    
 
     hass.data.setdefault(DOMAIN, {})
     hass.data[DOMAIN][entry.entry_id] = cc
