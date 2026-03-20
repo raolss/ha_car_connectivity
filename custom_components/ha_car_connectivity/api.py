@@ -47,7 +47,13 @@ class CarConnectivityAPI:
         )
 
         # Hämta connectorn
-        self.connector = self.cc.get_connector("vw")
+        for c in self.cc.connectors:
+            if getattr(c, "connector_id", None) == "vw":
+                self.connector = c
+                break
+
+        if self.connector is None:
+            _LOGGER.error("VW connector not found")
 
     async def get_vehicles(self):
         if self.vehicles is None:
