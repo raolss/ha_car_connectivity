@@ -1,4 +1,6 @@
 from homeassistant.components.sensor import SensorEntity
+from homeassistant.const import PERCENTAGE
+from homeassistant.helpers.entity import DeviceInfo
 
 from homeassistant.helpers.entity import Entity
 
