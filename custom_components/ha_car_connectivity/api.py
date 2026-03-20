@@ -1,5 +1,5 @@
-from carconnectivity_connector.volkswagen.volkswagen_connector import VolkswagenConnector
 from carconnectivity.carconnectivity import CarConnectivity
+from carconnectivity_connector.volkswagen.volkswagen_connector import VolkswagenConnector
 
 class CarConnectivityAPI:
     def __init__(self, entry_data):
