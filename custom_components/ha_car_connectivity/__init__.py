@@ -11,7 +11,8 @@ from .api import CarConnectivityAPI
 PLATFORMS = [Platform.SENSOR]
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry):
-    api = CarConnectivityAPI(entry.data)
+    api = CarConnectivityAPI(hass, entry.data)
+    await api.async_init()
 
     vehicles = await api.get_vehicles()
 
