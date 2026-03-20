@@ -3,6 +3,7 @@ _LOGGER = logging.getLogger(__name__)
 
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.core import HomeAssistant
+from homeassistant.const import Platform
 
 #from .coordinator import VWCoordinator
 from .const import DOMAIN
@@ -12,6 +13,8 @@ from homeassistant.config_entries import ConfigEntry
 
 from carconnectivity.carconnectivity import CarConnectivity
 import carconnectivity_connectors.volkswagen
+
+PLATFORMS = [Platform.SENSOR]
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry):
     #config = entry.data
@@ -53,6 +56,19 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry):
 
 async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry):
     hass.data[DOMAIN].pop(entry.entry_id)
+    return True
+
+async def async_setup_entry(hass, entry):
+    api = CarConnectivityAPI(entry.data)
+    vehicles = await api.get_vehicles()
+
+    hass.data.setdefault(DOMAIN, {})
+    hass.data[DOMAIN][entry.entry_id] = {
+        "api": api,
+        "vehicles": vehicles,
+    }
+
+    hass.config_entries.async_setup_platforms(entry, ["sensor"])
     return True
 
 
