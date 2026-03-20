@@ -12,8 +12,9 @@ except Exception as e:
 #from carconnectivity_connector.volkswagen.volkswagen_connector import VolkswagenConnector
 
 class CarConnectivityAPI:
-    def __init__(self, entry_data):
+    def __init__(self, hass, entry_data):
         # Bygg config enligt CarConnectivity-specen
+        self.hass = hass
         self.config = {
             "carConnectivity": {
                 "connectors": [
@@ -32,17 +33,31 @@ class CarConnectivityAPI:
             }
         }
 
+        self.cc = None
+        self.connector = None
+        self.vehicles = None
+
         # Skapa CarConnectivity-instansen
-        self.cc = CarConnectivity(self.config)
+    async def async_init(self):
+        """Initialize CarConnectivity (blocking → executor)."""
+        _LOGGER.warning("Initializing CarConnectivity")
+
+        self.cc = await self.hass.async_add_executor_job(
+                CarConnectivity, self.config
+        )
 
         # Hämta connectorn
         self.connector = self.cc.get_connector("vw")
 
-        self.vehicles = None
-
     async def get_vehicles(self):
         if self.vehicles is None:
-            self.vehicles = await self.connector.get_vehicles()
+             _LOGGER.warning("Fetching vehicles")
+            
+            self.vehicles = await self.hass.async_add_executor_job(
+                self.connector.get_vehicles
+            )
+
+                   
 
         normalized = []
         for v in self.vehicles:
